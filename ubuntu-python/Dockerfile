@@ -1,7 +1,7 @@
 FROM jfloff/alpine-python
 
-RUN pip install flask /
-&& pip install -U flask-cors
+RUN pip install flask && \
+pip install -U flask-cors
 
 CMD [ "python", "/root/app.py" ]
 
