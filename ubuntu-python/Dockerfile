@@ -5,6 +5,6 @@ pip install -U flask-cors
 
 EXPOSE 5000
 
-CMD [ "python", "/root/app.py" ]
+CMD [ "python", "/root/app.py runserver" ]
 
 MAINTAINER Matheus Melo <matheus306@gmail.com>
