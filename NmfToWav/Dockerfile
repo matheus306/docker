@@ -8,4 +8,7 @@ apt-get install -y python-pip
 CMD pip install flask
 EXPOSE 5000
 
+COPY /code /code
+WORKDIR /code
+
 MAINTAINER Matheus Melo <matheus306@gmail.com>
