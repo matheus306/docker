@@ -27,8 +27,8 @@ def upload_nmf():
 
 		response = make_response(fileContent)
 		response.headers['Content-type'] = 'audio/wav'
-		response.headers['Content-Disposition'] =  'attachment; filename=' + file_name + '.wav'
-		response.headers['Content-Length'] = os.stat('/root/'+file_name).st_size
+		response.headers['Content-Disposition'] =  'attachment; filename=''/root/' +nome_arquivo+ '.wav'
+		response.headers['Content-Length'] = os.stat('/root/' +nome_arquivo+ '.wav').st_size
 	return response
 
 
