@@ -1,10 +1,7 @@
-FROM python:2
-
-RUN pip install flask \
-&& pip install -U flask-cors
-
-WORKDIR /usr/src/app
-
-EXPOSE 5000
+FROM python:2.7
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD python app.py
 
 MAINTAINER Matheus Melo <matheus306@gmail.com>
