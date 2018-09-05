@@ -36,7 +36,7 @@ def upload_nmf():
 
 		return response
 	except Exception as e:
-		return ('{"error" : "%s" }' % (e.message)), 500
+		return ('{"error" : "%s" }' % (e.message)), 400
 
 
 if __name__ == '__main__':
