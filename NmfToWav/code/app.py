@@ -17,11 +17,7 @@ def teste():
 def upload_nmf():
 	try:
 		for file in request.files.getlist('files'):
-			nome_arquivo, file_extension = os.path.splitext(file.filename)[0]
-
-			if file_extension != "nmf":
-				return ('{"error" : "nao e um arquivo NMF valido" }'), 500
-
+			nome_arquivo = os.path.splitext(file.filename)[0]
 			file_name = secure_filename(file.filename)
 			file_target = os.path.join('/root/', file_name)
 			file.save(file_target)
@@ -39,9 +35,8 @@ def upload_nmf():
 		os.remove('/root/' +nome_arquivo+ '.nmf')
 
 		return response
-	except:
-		type, value, traceback = sys.exc_info()
-		return ('{"error" : "%s" }' % (value.strerror)), 500
+	except Exception as e:
+		return ('{"error" : "%s" }' % (e.message)), 500
 
 
 if __name__ == '__main__':
