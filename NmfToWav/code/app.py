@@ -17,8 +17,8 @@ def teste():
 def upload_nmf():
 	try:
 		for file in request.files.getlist('files'):
-			nome_arquivo = os.path.splitext(file.filename)[0]
-			file_name = secure_filename(file.filename)
+			nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
+			file_name = secure_filename(file.filename.replace(" ", "_"))
 			file_target = os.path.join('/root/', file_name)
 			file.save(file_target)
 			convert_to_wav(os.path.join('/root/', file_name))
