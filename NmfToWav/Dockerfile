@@ -12,10 +12,9 @@ pip install flask
 EXPOSE 5000
 
 COPY /code /code
-COPY /conf /code/conf
+COPY /conf /etc/apache2/conf-available/
 WORKDIR /code
 
-CMD cp conf/wsgi.conf /etc/apache2/conf-available/
 CMD mkdir /var/www/prod/
 CMD cp ./* /var/www/prod/
 
