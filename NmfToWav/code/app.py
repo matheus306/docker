@@ -13,7 +13,7 @@ def teste():
     return "API rodando perfeitamente!"
 
 
-@app.route("/v1/nmftowav/upload", methods=['POST'])
+@app.route("/nmftowav/upload", methods=['POST'])
 def upload_nmf():
     try:
         for file in request.files.getlist('files'):
