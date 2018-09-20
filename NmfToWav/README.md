@@ -1,9 +1,9 @@
-### Nmf2Wav - Conversor de arquivos Nmf em Wav
+#### Nmf2Wav - Conversor de arquivos Nmf para Wav
 
 #### Docker Run comand
  
 ```
- docker run --rm --name nmf2wav -it -p 5000:5000 matheus306/nmftowav
+ docker run --rm --name nmf2wav -it -p 80:80 matheus306/nmftowav
 ```
 
 #### Exemplo Cliente Java
