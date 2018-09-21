@@ -19,26 +19,26 @@ def upload_nmf():
         for file in request.files.getlist('files'):
             nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
             file_name = secure_filename(file.filename.replace(" ", "_"))
-            file_target = os.path.join('/root/', file_name)
+            file_target = os.path.join('/home/', file_name)
             file.save(file_target)
-            convert_to_wav(os.path.join('/root/', file_name))
+            convert_to_wav(os.path.join('/home/', file_name))
 
-        with open('/root/' + nome_arquivo + '.wav', mode='rb') as file:
+        with open('/home/' + nome_arquivo + '.wav', mode='rb') as file:
             file_content = file.read()
 
             response = make_response(file_content)
             response.headers['Content-type'] = 'audio/wav'
-            response.headers['Content-Disposition'] = 'attachment; filename=''/root/' + nome_arquivo + '.wav'
-            response.headers['Content-Length'] = os.stat('/root/' + nome_arquivo + '.wav').st_size
+            response.headers['Content-Disposition'] = 'attachment; filename=''/home/' + nome_arquivo + '.wav'
+            response.headers['Content-Length'] = os.stat('/home/' + nome_arquivo + '.wav').st_size
 
-        os.remove('/root/' + nome_arquivo + '.wav')
-        os.remove('/root/' + nome_arquivo + '.nmf')
+        os.remove('/home/' + nome_arquivo + '.wav')
+        os.remove('/home/' + nome_arquivo + '.nmf')
 
         return response
     except Exception as e:
-        return ('{"error" : "%s" }' % e.message), 400
+        print (e)
+        return ('{"error" : "%s" }' % e), 400
 
 
 if __name__ == '__main__':
-    print (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     app.run()

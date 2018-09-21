@@ -10,7 +10,8 @@ apt-get install -y libapache2-mod-wsgi && \
 pip install flask && \
 mkdir /var/www/prod && \
 mkdir /var/www/log && \
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
+echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
+chown -R www-data /home/
 
 COPY /code /var/www/prod/
 COPY /conf /etc/apache2/conf-available/
