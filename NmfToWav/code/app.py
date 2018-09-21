@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def teste():
+def info():
     return "API rodando no container " + socket.gethostname()
 
 
