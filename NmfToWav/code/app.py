@@ -3,11 +3,9 @@ import socket
 
 from flask import Flask, request, make_response
 from werkzeug import secure_filename
-
 from NMFtoWAVConverter import convert_to_wav
 
 app = Flask(__name__)
-
 
 @app.route("/")
 def info():
