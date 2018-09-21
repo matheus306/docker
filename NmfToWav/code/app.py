@@ -1,4 +1,5 @@
 import os
+import socket
 
 from flask import Flask, request, make_response
 from werkzeug import secure_filename
@@ -10,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def teste():
-    return "API rodando perfeitamente!"
+    return "API rodando no container " + socket.gethostname()
 
 
 @app.route("/nmftowav/upload", methods=['POST'])
