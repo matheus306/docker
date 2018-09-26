@@ -1,18 +1,14 @@
 version: '3.2'
 services:
-
   nmf2wav1:
-    build: ./
+    image: matheus306/nmftowav:latest
     tty: true
-
   nmf2wav2:
-     build: ./
+    image: matheus306/nmftowav:latest
      tty: true
-
   nmf2wav3:
-      build: ./
+    image: matheus306/nmftowav:latest
       tty: true
-
   loadbalancer:
       build: ./nginx
       tty: true
