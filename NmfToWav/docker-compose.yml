@@ -1,20 +1,43 @@
-version: '3.2'
 services:
-  nmf2wav1:
-    image: matheus306/nmftowav:latest
-    tty: true
-  nmf2wav2:
-    image: matheus306/nmftowav:latest
-     tty: true
-  nmf2wav3:
-    image: matheus306/nmftowav:latest
-      tty: true
   loadbalancer:
-      build: ./nginx
-      tty: true
-      links:
-        - nmf2wav1
-        - nmf2wav2
-        - nmf2wav3
-      ports:
-        - '5000:5000'
+    build: ./nginx
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "first-logs"
+    links:
+    - nmf2wav1
+    - nmf2wav2
+    - nmf2wav3
+    ports:
+    - "5000:5000"
+    tty: true
+  nmf2wav1:
+    image: "matheus306/nmftowav:latest"
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "first-logs"
+  nmf2wav2:
+    image: "matheus306/nmftowav:latest"
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "first-logs"
+  nmf2wav3:
+    image: "matheus306/nmftowav:latest"
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "first-logs"
+version: "3.2"
