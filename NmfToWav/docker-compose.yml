@@ -5,7 +5,7 @@ services:
       driver: gelf
       options:
         gelf-address: "udp://localhost:12201"
-        tag: "first-logs"
+        tag: "nmftowav"
     links:
     - nmf2wav1
     - nmf2wav2
@@ -21,7 +21,7 @@ services:
       driver: gelf
       options:
         gelf-address: "udp://localhost:12201"
-        tag: "first-logs"
+        tag: "nmftowav"
   nmf2wav2:
     image: "matheus306/nmftowav:latest"
     tty: true
@@ -30,7 +30,7 @@ services:
       driver: gelf
       options:
         gelf-address: "udp://localhost:12201"
-        tag: "first-logs"
+        tag: "nmftowav"
   nmf2wav3:
     image: "matheus306/nmftowav:latest"
     tty: true
@@ -39,5 +39,5 @@ services:
       driver: gelf
       options:
         gelf-address: "udp://localhost:12201"
-        tag: "first-logs"
+        tag: "nmftowav"
 version: "3.2"
