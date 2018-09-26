@@ -3,6 +3,7 @@ import socket
 
 from flask import Flask, request, make_response
 from werkzeug import secure_filename
+
 from NMFtoWAVConverter import convert_to_wav
 
 app = Flask(__name__)
@@ -10,7 +11,6 @@ app = Flask(__name__)
 @app.route("/")
 def info():
     return "API rodando no container " + socket.gethostname()
-
 
 @app.route("/nmftowav/upload", methods=['POST'])
 def upload_nmf():
@@ -33,6 +33,7 @@ def upload_nmf():
         os.remove('/home/' + nome_arquivo + '.wav')
         os.remove('/home/' + nome_arquivo + '.nmf')
 
+        print ("Arquivo convertido com sucesso")
         return response
     except Exception as e:
         print (e)

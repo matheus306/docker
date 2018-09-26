@@ -14,7 +14,7 @@ services:
     - "5000:5000"
     tty: true
   nmf2wav1:
-    image: "matheus306/nmftowav:latest"
+    image: "matheus306/nmftowav:1.0"
     tty: true
     restart: always
     logging:
@@ -23,7 +23,7 @@ services:
         gelf-address: "udp://localhost:12201"
         tag: "nmftowav"
   nmf2wav2:
-    image: "matheus306/nmftowav:latest"
+    image: "matheus306/nmftowav:1.0"
     tty: true
     restart: always
     logging:
@@ -32,7 +32,7 @@ services:
         gelf-address: "udp://localhost:12201"
         tag: "nmftowav"
   nmf2wav3:
-    image: "matheus306/nmftowav:latest"
+    image: "matheus306/nmftowav:1.0"
     tty: true
     restart: always
     logging:
