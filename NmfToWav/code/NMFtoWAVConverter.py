@@ -29,7 +29,6 @@ codecs = {
 
 
 def get_packet_header(data):
-    "Get required information from packet header."
     return {
         "packet_type": struct.unpack("b", data[0:1])[0],
         "packet_subtype": struct.unpack("h", data[1:3])[0],
@@ -42,7 +41,6 @@ def get_packet_header(data):
 
 
 def get_compression_type(data):
-    "Get compression type of the audio chunk."
     for i in range(0, len(data), 22):
         type_id = struct.unpack("h", data[i:i + 2])[0]
         data_size = struct.unpack("i", data[i + 2:i + 6])[0]
@@ -52,8 +50,6 @@ def get_compression_type(data):
 
 
 def get_data_value(data, data_size):
-    '''The helper function to get value of the data
-    field from parameters header.'''
     fmt = "{}s".format(data_size)
     data_value = struct.unpack(fmt, data[0:data_size])
     if data_value == 0:
@@ -83,7 +79,6 @@ def chunks_generator(data):
 
 
 def convert_to_wav(data, path_to_file):
-    "Convert raw audio data using ffmpeg and subprocess."
     previous_stream_id = -1
     processes = {}
     for compression, stream_id, raw_audio_chunk in chunks_generator(data):

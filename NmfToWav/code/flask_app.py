@@ -21,7 +21,6 @@ def upload_nmf():
         for file in request.files.getlist('files'):
             nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
             file_name_random = str(uuid.uuid4())
-
             convert_to_wav(file.read(), os.path.join(directory + '/', file_name_random + ".nmf"))
 
         with open(directory + '/' + file_name_random + '.wav', mode='rb') as file:
