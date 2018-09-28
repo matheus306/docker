@@ -16,7 +16,7 @@ def info():
 def upload_nmf():
     try:
 
-        directory = 'C:\User'
+        directory = '/nmf/'
 
         for file in request.files.getlist('files'):
             nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
