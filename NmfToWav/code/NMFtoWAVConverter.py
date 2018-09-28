@@ -5,7 +5,6 @@ Usage:
 python nmf_converter.py path_to_nmf_file
 '''
 import os
-import sys
 import struct
 import subprocess
 
@@ -63,13 +62,7 @@ def get_data_value(data, data_size):
     return data_value[0]
 
 
-def chunks_generator(path_to_file):
-    "A python generator of the raw audio data."
-    try:
-        with open(path_to_file, "rb") as f:
-            data = f.read()
-    except IOError:
-        sys.exit("No such file")
+def chunks_generator(data):
     packet_header_start = 0
     while True:
         packet_header_end = packet_header_start + 28
@@ -89,11 +82,11 @@ def chunks_generator(path_to_file):
             break
 
 
-def convert_to_wav(path_to_file):
+def convert_to_wav(data, path_to_file):
     "Convert raw audio data using ffmpeg and subprocess."
     previous_stream_id = -1
     processes = {}
-    for compression, stream_id, raw_audio_chunk in chunks_generator(path_to_file):
+    for compression, stream_id, raw_audio_chunk in chunks_generator(data):
         if stream_id != previous_stream_id and not processes.get(stream_id):
             output_file = os.path.splitext(path_to_file)[0] + ".wav"
             processes[stream_id] = subprocess.Popen(

@@ -16,15 +16,13 @@ def info():
 def upload_nmf():
     try:
 
-        directory = '/nmf/'
+        directory = os.path.join('/nmf/')
 
         for file in request.files.getlist('files'):
             nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
             file_name_random = str(uuid.uuid4())
 
-            file_target = os.path.join(directory + '/', file_name_random + ".nmf")
-            file.save(file_target)
-            convert_to_wav(os.path.join(directory + '/', file_name_random + ".nmf"))
+            convert_to_wav(file.read(), os.path.join(directory + '/', file_name_random + ".nmf"))
 
         with open(directory + '/' + file_name_random + '.wav', mode='rb') as file:
             file_content = file.read()
@@ -34,7 +32,6 @@ def upload_nmf():
             response.headers['Content-Length'] = os.stat(directory + '/' + file_name_random + '.wav').st_size
 
         os.remove(directory + '/' + file_name_random + ".wav")
-        os.remove(directory + '/' + file_name_random + ".nmf")
 
         print ("Arquivo convertido com sucesso")
         return response
@@ -44,4 +41,4 @@ def upload_nmf():
 
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(threaded=True, port=80)
