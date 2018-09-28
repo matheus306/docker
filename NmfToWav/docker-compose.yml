@@ -10,11 +10,18 @@ services:
     - nmf2wav1
     - nmf2wav2
     - nmf2wav3
+    - nmf2wav4
+    - nmf2wav5
+    - nmf2wav6
+    - nmf2wav7
+    - nmf2wav8
+    - nmf2wav9
+    - nmf2wav10
     ports:
     - "5000:5000"
     tty: true
   nmf2wav1:
-    image: "matheus306/nmftowav:1.0"
+    build: ./
     tty: true
     restart: always
     logging:
@@ -23,7 +30,7 @@ services:
         gelf-address: "udp://localhost:12201"
         tag: "nmftowav"
   nmf2wav2:
-    image: "matheus306/nmftowav:1.0"
+    build: ./
     tty: true
     restart: always
     logging:
@@ -32,7 +39,70 @@ services:
         gelf-address: "udp://localhost:12201"
         tag: "nmftowav"
   nmf2wav3:
-    image: "matheus306/nmftowav:1.0"
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav4:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav5:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav6:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav7:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav8:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav9:
+    build: ./
+    tty: true
+    restart: always
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:12201"
+        tag: "nmftowav"
+  nmf2wav10:
+    build: ./
     tty: true
     restart: always
     logging:

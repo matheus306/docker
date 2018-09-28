@@ -1,10 +1,8 @@
 import os
-import shutil
 import socket
-from datetime import datetime
+import uuid
 
 from flask import Flask, request, make_response
-from werkzeug import secure_filename
 
 from NMFtoWAVConverter import convert_to_wav
 
@@ -17,26 +15,26 @@ def info():
 @app.route("/nmftowav/upload", methods=['POST'])
 def upload_nmf():
     try:
-        directory = '/home/' + datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:-3]
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+
+        directory = 'C:\User'
 
         for file in request.files.getlist('files'):
             nome_arquivo = os.path.splitext(file.filename)[0].replace(" ", "_")
-            file_name = secure_filename(file.filename.replace(" ", "_"))
-            file_target = os.path.join(directory + '/', file_name)
+            file_name_random = str(uuid.uuid4())
+
+            file_target = os.path.join(directory + '/', file_name_random + ".nmf")
             file.save(file_target)
-            convert_to_wav(os.path.join(directory + '/', file_name))
+            convert_to_wav(os.path.join(directory + '/', file_name_random + ".nmf"))
 
-        with open(directory + '/' + nome_arquivo + '.wav', mode='rb') as file:
+        with open(directory + '/' + file_name_random + '.wav', mode='rb') as file:
             file_content = file.read()
-
             response = make_response(file_content)
             response.headers['Content-type'] = 'audio/wav'
-            response.headers['Content-Disposition'] = 'attachment; filename=''/home/' + nome_arquivo + '.wav'
-            response.headers['Content-Length'] = os.stat('/' + directory + '/' + nome_arquivo + '.wav').st_size
+            response.headers['Content-Disposition'] = 'attachment; filename=' + nome_arquivo + '.wav'
+            response.headers['Content-Length'] = os.stat(directory + '/' + file_name_random + '.wav').st_size
 
-            shutil.rmtree(directory)
+        os.remove(directory + '/' + file_name_random + ".wav")
+        os.remove(directory + '/' + file_name_random + ".nmf")
 
         print ("Arquivo convertido com sucesso")
         return response
