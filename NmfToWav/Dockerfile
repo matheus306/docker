@@ -17,8 +17,6 @@ chown -R www-data /nmf
 COPY /code /var/www/prod/
 COPY /conf /etc/apache2/conf-available/
 
-EXPOSE 5000
-
 RUN chmod +x /etc/apache2/conf-available/entrypoint.sh
 
 ENTRYPOINT ["/etc/apache2/conf-available/entrypoint.sh"]
