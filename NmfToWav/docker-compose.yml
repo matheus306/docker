@@ -1,113 +1,135 @@
+version: "3.6"
 services:
   loadbalancer:
     build: ./nginx
+    network_mode: bridge
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://localhost:12201"
+        gelf-address: "udp://10.30.0.20:12201"
         tag: "nmftowav"
     links:
     - nmf2wav1
     - nmf2wav2
     - nmf2wav3
-    - nmf2wav4
-    - nmf2wav5
-    - nmf2wav6
-    - nmf2wav7
-    - nmf2wav8
-    - nmf2wav9
-    - nmf2wav10
     ports:
     - "5000:5000"
     tty: true
   nmf2wav1:
-    build: ./
+    image: matheus306/nmf2wav
     tty: true
+    network_mode: bridge
     restart: always
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://localhost:12201"
+        gelf-address: "udp://10.30.0.20:12201"
         tag: "nmftowav"
   nmf2wav2:
-    build: ./
+    image: matheus306/nmf2wav
     tty: true
+    network_mode: bridge
     restart: always
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://localhost:12201"
+        gelf-address: "udp://10.30.0.20:12201"
         tag: "nmftowav"
   nmf2wav3:
-    build: ./
+    image: matheus306/nmf2wav
     tty: true
+    network_mode: bridge
     restart: always
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://localhost:12201"
+        gelf-address: "udp://10.30.0.20:12201"
         tag: "nmftowav"
-  nmf2wav4:
-    build: ./
+  nte1:
+    container_name: NTE1
+    privileged: true
+    image: matheus306/nte4
+    network_mode: bridge
     tty: true
     restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav5:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav6:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav7:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav8:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav9:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-  nmf2wav10:
-    build: ./
-    tty: true
-    restart: always
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:12201"
-        tag: "nmftowav"
-version: "3.2"
+    links:
+    - loadbalancer
+#  nte2:
+#    container_name: NTE2
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte3:
+#    container_name: NTE3
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte4:
+#    container_name: NTE4
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte5:
+#    container_name: NTE5
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte6:
+#    container_name: NTE6
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte7:
+#    container_name: NTE7
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte8:
+#    container_name: NTE8
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
+
+#  nte9:
+#    container_name: NTE9
+#    privileged: true
+#    image: matheus306/nte4
+#    network_mode: bridge
+#    tty: true
+#    restart: always
+#    links:
+#      - loadbalancer
