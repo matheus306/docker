@@ -1,7 +1,7 @@
 FROM ubuntu
 
 COPY ./init.sh /home
-COPY ./ejabberd.yml /usr/local/etc/ejabberd
+COPY ./ejabberd.yml /usr/local/etc/ejabberd/
 
 RUN apt-get update && \
     apt-get install -y wget && \
