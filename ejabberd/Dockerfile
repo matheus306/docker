@@ -1,9 +1,9 @@
 FROM ubuntu
 
 COPY ./init.sh /home
+COPY ./ejabberd.yml /usr/local/etc/ejabberd
 
 RUN apt-get update && \
-    apt-get install -y ejabberd && \
     apt-get install -y wget && \
     apt-get install -y git && \
     apt-get install -y make && \
@@ -29,6 +29,8 @@ RUN apt-get update && \
     ./configure --enable-mysql && \
     make && \
     make install && \
-    sh /home/init.sh
+    chmod +x /home/init.sh
+
+ENTRYPOINT ["sh", "/home/init.sh"]
 
 

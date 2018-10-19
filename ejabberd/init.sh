@@ -19,4 +19,4 @@ echo '>>>>>>>>>>>>>>>>>>>>>>>>> Aguardando o servidor subir'
 sleep 5 && \
 
 echo '>>>>>>>>>>>>>>>>>>>>>>>>> Subindo o servidor ejabberd'
-ejabberdctl start
+ejabberdctl foreground
