@@ -3,7 +3,7 @@
 ###### Docker Run comand
  
 ```
- docker run -it -p 5280:5280 -p 5222:5222 --rm --entrypoint /home/init.sh matheus306/ejabberd
+ docker run -it -p 5280:5280 -p 5222:5222 --rm matheus306/ejabberd
 ```
 
 ###### Administração
