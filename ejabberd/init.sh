@@ -7,7 +7,7 @@ echo '>>>>>>>>>>>>>>>>>>>>>>>>> Inicializando o servidor ejabberd... '
 ejabberdctl start && \
 
 echo '>>>>>>>>>>>>>>>>>>>>>>>>> Aguardando o servidor subir'
-sleep 5 && \
+sleep 10 && \
 
 echo '>>>>>>>>>>>>>>>>>>>>>>>>> Criando o usuario administrador...'
 ejabberdctl register admin aec 123123 && \

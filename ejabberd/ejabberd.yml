@@ -11,6 +11,7 @@ log_rate_limit: 100
 
 hosts:
   - "aec"
+  -
 
 listen:
   -
@@ -85,34 +86,13 @@ access_rules:
   trusted_network:
     - allow: loopback
 api_permissions:
-  "console commands":
-    from:
-      - ejabberd_ctl
-    who: all
-    what: "*"
   "admin access":
-    who:
-      - access:
-          - allow:
-            - acl: loopback
-            - acl: admin
-      - oauth:
-        - scope: "ejabberd:admin"
-        - access:
-          - allow:
-            - acl: loopback
-            - acl: admin
-    what:
+    - who:
+      - admin@aec
+    - what
       - "*"
       - "!stop"
-      - "!start"
-  "public commands":
-    who:
-      - ip: "127.0.0.1/8"
-    what:
-      - "status"
-      - "connected_users_number"
-language: "en"
+
 acme:
    contact: "mailto:example-admin@example.com"
    ca_url: "https://acme-v01.api.letsencrypt.org"
